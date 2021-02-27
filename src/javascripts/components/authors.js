@@ -2,7 +2,9 @@
 
 const showAuthors = (array) => {
   document.querySelector('#store').innerHTML = '';
-  // CREATE A BUTTON TO ADD BOOKS
+  document.querySelector('#add-button').innerHTML = '<button class="btn btn-success btn-lg mb-4" id="add-author-btn">Add An Author</button>';
+
+  document.querySelector('#form-container').innerHTML = '';
 
   array.forEach((item) => {
     // FIXME: STUDENTS create cards for your authors
