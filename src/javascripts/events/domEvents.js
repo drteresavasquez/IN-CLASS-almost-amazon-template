@@ -1,13 +1,14 @@
 import { showBooks } from '../components/books';
 import addBookForm from '../components/forms/addBookForm';
-import { createBook } from '../helpers/data/bookData';
+import { createBook, deleteBook } from '../helpers/data/bookData';
 
 const domEvents = () => {
   document.querySelector('body').addEventListener('click', (e) => {
     // CLICK EVENT FOR DELETING A BOOK
     if (e.target.id.includes('delete-book')) {
       if (window.confirm('Want to delete?')) {
-        console.warn('CLICKED DELETE BOOK', e.target.id);
+        const firebaseKey = e.target.id.split('--')[1];
+        deleteBook(firebaseKey).then((booksArray) => showBooks(booksArray));
       }
     }
 
