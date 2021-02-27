@@ -2,12 +2,12 @@
 We are building an admin app that allows a store owner to login to the app and manage books and authors.
 
 ## Tuesday Night (2/23/2021)
-- Get Books on App Load
-- Students: Get Authors on click of Authors in Navigation
+- ~~Get Books on App Load~~
+- ~~Students: Get Authors on click of Authors in Navigation~~
 
 ## Saturday
-- Set up All Books in Navigation
-- Set Up Create (Add Book) Button
+- ~~Set up All Books in Navigation~~
+- ~~Set Up Create (Add Book) Button~~
 - Students: Set up Create Author (with favorite)
 - GET BOOKS ON SALE Using FB Rules
 - Students: GET Favorite Authors Using FB Rules (Add a link to the navigation for favorite authors)
