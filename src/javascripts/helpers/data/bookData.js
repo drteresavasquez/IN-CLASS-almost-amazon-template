@@ -24,7 +24,16 @@ const createBook = (bookObject) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+// GET BOOKS ON SALE
+const getSaleBooks = () => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/books.json?orderBy="sale"&equalTo=true`)
+    .then((response) => {
+      const saleBooksArray = Object.values(response.data);
+      resolve(saleBooksArray);
+    }).catch((error) => reject(error));
+});
+
 // UPDATE BOOK
 // SEARCH BOOKS
 
-export { getBooks, createBook };
+export { getBooks, createBook, getSaleBooks };
