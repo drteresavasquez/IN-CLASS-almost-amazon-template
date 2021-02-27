@@ -8,6 +8,7 @@ const selectAuthor = (authorId = null) => {
 
   getAuthors().then((authorsArray) => {
     authorsArray.forEach((author) => {
+      // TODO: Add conditional to check autorId
       if (author.firebaseKey === authorId) {
         domString += `<option selected value="${author.firebaseKey}">${author.first_name} ${author.last_name}</option>`;
       } else {

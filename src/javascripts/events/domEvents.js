@@ -1,3 +1,5 @@
+// import firebase from 'firebase/app';
+// import 'firebase/auth';
 import { showBooks } from '../components/books';
 import addBookForm from '../components/forms/addBookForm';
 import { createBook, deleteBook } from '../helpers/data/bookData';
@@ -26,6 +28,8 @@ const domEvents = () => {
         price: document.querySelector('#price').value,
         sale: document.querySelector('#sale').checked,
         author_id: document.querySelector('#author').value,
+        // TODO: Add userId
+        // console.warn(firebase.auth().currentUser);
       };
 
       createBook(bookObject).then((booksArray) => showBooks(booksArray));

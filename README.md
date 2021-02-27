@@ -16,6 +16,7 @@ We are building an admin app that allows a store owner to login to the app and m
 
 ## Monday Night (3/1/2021)
 - Modifying the data so that logged in users only see the books and authors that they created
+  - Update the Book and Author data with a uid
 - Update Books
 - Students: Update Authors
 
