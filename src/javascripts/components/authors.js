@@ -6,7 +6,13 @@ const showAuthors = (array) => {
 
   array.forEach((item) => {
     // FIXME: STUDENTS create cards for your authors
-    document.querySelector('#store').innerHTML += `${item}`;
+    document.querySelector('#store').innerHTML += `
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">${item.first_name} ${item.last_name}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">${item.email}</h6>
+      </div>
+    </div>`;
   });
 };
 

@@ -14,7 +14,6 @@ const domEvents = () => {
 
     // CLICK EVENT FOR SHOWING FORM FOR ADDING A BOOK
     if (e.target.id.includes('add-book-btn')) {
-      console.warn('CLICKED ADD BOOK BUTTON', e.target.id);
       addBookForm();
     }
 

@@ -15,9 +15,9 @@ We are building an admin app that allows a store owner to login to the app and m
 - Students: Set up Delete Author
 
 ## Monday Night (3/1/2021)
+- Modifying the data so that logged in users only see the books and authors that they created
 - Update Books
 - Students: Update Authors
-- Modifying the data so that logged in users only see the books and authors that they created
 
 ## Tuesday Night
 - When we click an author, we should see all the Books that were written by that author

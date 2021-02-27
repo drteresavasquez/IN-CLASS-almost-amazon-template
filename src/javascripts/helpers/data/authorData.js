@@ -18,9 +18,18 @@ const getAuthors = () => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+// GET FAVORITE AUTHORS
+const getFavoriteAuthors = () => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/authors.json?orderBy="favorite"&equalTo=true`)
+    .then((response) => {
+      const favAuthorsArray = Object.values(response.data);
+      resolve(favAuthorsArray);
+    }).catch((error) => reject(error));
+});
+
 // DELETE AUTHOR
 // CREATE AUTHOR
 // UPDATE AUTHOR
 // SEARCH AUTHORS
 
-export default getAuthors;
+export { getAuthors, getFavoriteAuthors };
