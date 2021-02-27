@@ -1,4 +1,6 @@
+import { showBooks } from '../components/books';
 import signOut from '../helpers/auth/signOut';
+import { getBooks } from '../helpers/data/bookData';
 
 // navigation events
 const navigationEvents = () => {
@@ -13,7 +15,8 @@ const navigationEvents = () => {
 
   // ALL BOOKS
   document.querySelector('#all-books').addEventListener('click', () => {
-    console.warn('All Books');
+    // GET ALL BOOKS on click
+    getBooks().then((booksArray) => showBooks(booksArray));
   });
 
   // SEARCH
