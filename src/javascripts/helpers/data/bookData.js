@@ -6,8 +6,8 @@ const dbUrl = firebaseConfig.databaseURL;
 
 // GET BOOKS
 // TODO: Update this to only get the current logged in user's books
-const getBooks = () => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/books.json`)
+const getBooks = (uid) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/books.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => {
       if (response.data) {
         resolve(Object.values(response.data));
@@ -33,13 +33,13 @@ const getSaleBooks = () => new Promise((resolve, reject) => {
 });
 
 // CREATE BOOK
-const createBook = (bookObject) => new Promise((resolve, reject) => {
+const createBook = (bookObject, uid) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/books.json`, bookObject)
     .then((response) => {
       const body = { firebaseKey: response.data.name };
       axios.patch(`${dbUrl}/books/${response.data.name}.json`, body)
         .then(() => {
-          getBooks().then((booksArray) => resolve(booksArray));
+          getBooks(uid).then((booksArray) => resolve(booksArray));
         });
     }).catch((error) => reject(error));
 });
