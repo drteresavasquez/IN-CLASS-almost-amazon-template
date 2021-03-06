@@ -62,7 +62,7 @@ const navigationEvents = (uid) => {
   });
 
   document.querySelector('#favorite-authors').addEventListener('click', () => {
-    getFavoriteAuthors().then((authorArray) => {
+    getFavoriteAuthors(uid).then((authorArray) => {
       if (authorArray.length) {
         showAuthors(authorArray);
       } else {

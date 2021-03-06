@@ -1,3 +1,5 @@
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import axios from 'axios';
 import firebaseConfig from '../auth/apiKeys';
 // API CALLS FOR BOOKS
@@ -5,7 +7,6 @@ import firebaseConfig from '../auth/apiKeys';
 const dbUrl = firebaseConfig.databaseURL;
 
 // GET BOOKS
-// TODO: Update this to only get the current logged in user's books
 const getBooks = (uid) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/books.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => {
@@ -18,9 +19,9 @@ const getBooks = (uid) => new Promise((resolve, reject) => {
 });
 
 // DELETE BOOK
-const deleteBook = (firebaseKey) => new Promise((resolve, reject) => {
+const deleteBook = (firebaseKey, uid) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/books/${firebaseKey}.json`)
-    .then(() => getBooks().then((booksArray) => resolve(booksArray)))
+    .then(() => getBooks(uid).then((booksArray) => resolve(booksArray)))
     .catch((error) => reject(error));
 });
 
@@ -44,9 +45,41 @@ const createBook = (bookObject, uid) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+// GET SINGLE BOOK
+const getSingleBook = (firebaseKey) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/books/${firebaseKey}.json`)
+    .then((response) => resolve(response.data))
+    .catch((error) => reject(error));
+});
+
 // UPDATE BOOK
-// SEARCH BOOKS
+const updateBook = (firebaseKey, bookObject) => new Promise((resolve, reject) => {
+  axios.patch(`${dbUrl}/books/${firebaseKey}.json`, bookObject)
+    .then(() => getBooks(firebase.auth().currentUser.uid)).then((booksArray) => resolve(booksArray))
+    .catch((error) => reject(error));
+});
+
+// TODO: SEARCH THE BOOKS
+// const searchBooks = (searchValue) => new Promise((resolve, reject) => {
+//   getBooks().then((booksArray) => {
+//     const search = booksArray.filter((book) => book.title.toLowerCase().includes(searchValue));
+//     resolve(search);
+//   }).catch((error) => reject(error));
+// });
+
+// GET ALL AUTHORS BOOKS
+const getAuthorBooks = (authorId) => new Promise((resolve, reject) => {
+  axios.get(`${dbUrl}/books.json?orderBy="author_id"&equalTo="${authorId}"`)
+    .then((response) => resolve(Object.values(response.data)))
+    .catch((error) => reject(error));
+});
 
 export {
-  getBooks, createBook, deleteBook, getSaleBooks
+  getBooks,
+  createBook,
+  deleteBook,
+  getSaleBooks,
+  getSingleBook,
+  updateBook,
+  getAuthorBooks
 };
